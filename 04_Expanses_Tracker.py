@@ -2,6 +2,72 @@ from textwrap import dedent
 
 expenses = []
 
+
+def add_expense(expenses):
+        product = input("Product: ").strip()
+        if not product:
+                print("You cannot leave this empty!")
+                return
+
+        try:
+                price = float(input("Price: "))
+        except ValueError:
+                print("Invalid Price")
+                return
+
+        if price < 1:
+                print("The price cannot be lower than 1")
+                return
+
+        category = input("Category: ").strip()
+        if not category:
+                print("You acnnot leae this empty!")
+                return
+        expenses.append({"product":product, "price":price, "category":category})
+
+def list_expenses(expenses):
+        if not expenses:
+                        print(dedent("""
+                        ########################
+
+                        You Have No Expenses Yet.
+                        
+                        ########################
+                        """))
+                        return
+        print("Your Expansese Are: \n")
+        for number, expanse in enumerate(expenses, start=1):
+                        product_value = expanse["product"]
+                        price_value = expanse["price"]
+                        category_value = expanse["category"]
+                        print(f"{number}. {product_value} - {price_value} EGP - {category_value}")
+
+def calc_total_value(expenses):
+        total = 0
+        for expanse in expenses:
+                price_value = expanse["price"]
+                total += (price_value)
+        print(dedent(f"""Your Total Expenses is : {total} EGP"""))
+        return total
+
+def del_expense(expenses):
+        if not expenses:
+                print("There's No Expenses to Delete!")
+                return
+        try:
+                user_selected = int(input("What is the number of the Item that you want to delete: "))
+        except ValueError:
+                print("Please Enter a Valid Item Number")
+                return
+        if user_selected < 1 or user_selected > len(expenses):
+                print("Please Enter a Valid Item Number.")
+                return
+
+        item = user_selected - 1
+        expenses.pop(item)
+
+
+
 while True:
         print(dedent("""
         1. Add Expense
@@ -14,71 +80,17 @@ while True:
         command = input("> ")
 
         if command == "1":
-                product = input("Product: ")
-                product = product.strip()
-                if not product:
-                        print("You cannot leave this empty!")
-                        continue
-                try:
-                        price = float(input("Price: "))   
+                add_expense(expenses)
 
-                except ValueError:
-                        #       dedent() removes the common indentation while keeping your code nicely formatted.
-                        print(dedent("""        
-                        #########################################################
-                        
-                        Oops! Invalid Input Please Enter a Valid Price in Numbers
-                        
-                        #########################################################
-                         """))
-                        continue
-                if price < 1:
-                        print("The Price Cannot be lower than 1, Please Enter a valid Price")
-                        continue
-                category = input("Category: ")
-                category = category.strip()
-                if not category:
-                        print("You cannot leave this empty!")
-                        continue
-                expenses.append({"product":product, "price":price, "category":category})
         elif command == "2":
-                if not expenses:
-                                print(dedent("""
-                                ########################
+                list_expenses(expenses)
 
-                                You Have No Expenses Yet.
-                                
-                                ########################
-                                """))
-                                continue
-                print("Your Expansese Are: \n")
-                for number, expanse in enumerate(expenses, start=1):
-                                product_value = expanse["product"]
-                                price_value = expanse["price"]
-                                category_value = expanse["category"]
-                                print(f"{number}. {product_value} - {price_value} EGP - {category_value}")
         elif command == "3":
-                total = 0
-                for expanse in expenses:
-                        price_value = expanse["price"]
-                        total += (price_value)
-                print(dedent(f"""Your Total Expenses is : {total} EGP"""))
+                calc_total_value(expenses)
         
         elif command == "4":
-                if not expenses:
-                        print("There's No Expenses to Delete!")
-                        continue
-                try:
-                        user_selected = int(input("What is the number of the Item that you want to delete: "))
-                except ValueError:
-                        print("Please Enter a Valid Item Number")
-                        continue
-                if user_selected < 1 or user_selected > len(expenses):
-                        print("Please Enter a Valid Item Number.")
-                        continue
+                del_expense(expenses)
 
-                item = user_selected - 1
-                expenses.pop(item)
         elif command == "5":
                 break
 
