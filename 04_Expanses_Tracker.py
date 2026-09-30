@@ -48,7 +48,6 @@ def calc_total_value(expenses):
                 price_value = expanse["price"]
                 total += (price_value)
         print(dedent(f"""Your Total Expenses is : {total} EGP"""))
-        return total
 
 def del_expense(expenses):
         if not expenses:
