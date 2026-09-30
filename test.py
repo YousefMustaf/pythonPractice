@@ -125,26 +125,37 @@
 # save_user(id=1, name="john", age=22)
 
 # FIRST ONE
-def fizz_buzz(Number):
-        if (Number % 3 == 0) and (Number % 5 == 0):
-            return "FizzBuzz"
-        elif Number % 3 == 0:
-            return "Fizz"
-        elif Number % 5 == 0:
-            return "Buzz"
-        else:
-            return Number
+# def fizz_buzz(Number):
+#         if (Number % 3 == 0) and (Number % 5 == 0):
+#             return "FizzBuzz"
+#         elif Number % 3 == 0:
+#             return "Fizz"
+#         elif Number % 5 == 0:
+#             return "Buzz"
+#         else:
+#             return Number
 
-result = fizz_buzz(int(input("Enter Your Number: ")))
-print(result)
+# result = fizz_buzz(int(input("Enter Your Number: ")))
+# print(result)
 
-# SECOND ONE 
-for i in range(1, 16):
-    if (i % 3 == 0) and (i % 5 == 0):
-        print(f"{i} FizzBuzz")
-    elif i % 3 == 0:
-        print(f"{i} Fizz")
-    elif i % 5 == 0:
-            print(f"{i} Buzz")
-    else:
-         print(i)
+# # SECOND ONE 
+# for i in range(1, 16):
+#     if (i % 3 == 0) and (i % 5 == 0):
+#         print(f"{i} FizzBuzz")
+#     elif i % 3 == 0:
+#         print(f"{i} Fizz")
+#     elif i % 5 == 0:
+#             print(f"{i} Buzz")
+#     else:
+#          print(i)
+
+# the parameters should be the variables that the function needs to perform it's task
+
+def calc_rect_area(lenght, width):
+    area = lenght * width
+    print(f"Your Rectangle Area is: {area}")
+    return lenght, width 
+
+lenght = int(input("Enter Your Lenght: "))
+width = int(input("Enter Your Width: "))
+area = calc_rect_area(lenght, width)

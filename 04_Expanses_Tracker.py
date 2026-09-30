@@ -36,6 +36,7 @@ while True:
                         print("The Price Cannot be lower than 1, Please Enter a valid Price")
                         continue
                 category = input("Category: ")
+                category = category.strip()
                 if not category:
                         print("You cannot leave this empty!")
                         continue
